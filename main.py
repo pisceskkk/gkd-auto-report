@@ -31,7 +31,7 @@ def submit(s: requests.Session):
 
         # submitted date
         "date": time.strftime(r"%Y-%m-%d", time.localtime()),
-        "jzdz": "北京市怀柔区中国科学院大学雁栖湖校区西区一公寓",     # Residential Address
+        "jzdz": "北京市怀柔区中国科学院大学雁栖湖校区西区五公寓",     # Residential Address
         "zrzsdd": "1",                       # Yesterday place to stay    1.雁栖湖  8.京外
         # Whether you are in school or not  1.是, 主要是在雁栖湖校区   5.否
         "sfzx": "1",
@@ -63,17 +63,17 @@ def submit(s: requests.Session):
         # 昨天是否接受核酸检测
         "sfjshsjc": "1",                     # PCR test?       1.是 0.否
         # 第一针接种
-        "dyzymjzqk": "3",                    # first vaccination situation  3.已接种
-        "dyzjzsj": "2021-03-07",             # date of first vaccination
+        "dyzymjzqk": "1",                    # first vaccination situation  1.已接种(科兴)
+        "dyzjzsj": "2021-06-26",             # date of first vaccination
         "dyzwjzyy": "",
         # 第二针接种
-        "dezymjzqk": "3",                    # second vaccination situation  3.已接种
-        "dezjzsj": "2021-03-28",             # date of second vaccination
+        "dezymjzqk": "1",                    # second vaccination situation  1.已接种(科兴)
+        "dezjzsj": "2021-07-23",             # date of second vaccination
         "dezwjzyy": "",
         # 第三针接种
-        "dszymjzqk": "6",                    # third vaccination situation  6.未接种
-        "dszjzsj": "2000-01-01",             # default time
-        "dszwjzyy": "在吃其他药物",            # reason of non-vaccination
+        "dszymjzqk": "1",                    # third vaccination situation  1.已接种(科兴)
+        "dszjzsj": "2022-01-27",             # default time
+        "dszwjzyy": "",                      # reason of non-vaccination
 
         "gtshryjkzk": "1",                   # health situation
         "extinfo": "",                       # other information

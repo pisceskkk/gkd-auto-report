@@ -9,11 +9,7 @@ GKD_PASSWORD = os.environ["GKD_PASSWORD"]   # sep密码
 GKD_NUMBER = os.environ["GKD_NUMBER"]
 GKD_NAME = os.environ["GKD_NAME"]
 PUSH_TOKEN = os.environ["PUSH_TOKEN"]
-GEO_INFO_LIST = eval(os.environ["GEO_INFO_LIST"])
-GEO_INFO_IDX = eval(os.environ["GEO_INFO_IDX"])
-GEO_INFO_IDX_OLD = eval(os.environ["GEO_INFO_IDX_OLD"])
-GEO_INFO = GEO_INFO_LIST[GEO_INFO_IDX]
-GEO_INFO_OLD = GEO_INFO_LIST[GEO_INFO_IDX_OLD]
+
 
 def login(s: requests.Session):
     r = s.post("https://app.ucas.ac.cn/uc/wap/login/check", data={
@@ -35,7 +31,7 @@ def submit(s: requests.Session):
 
         # submitted date
         "date": time.strftime(r"%Y-%m-%d", time.localtime()),
-        "jzdz": GEO_INFO[0],     # Residential Address
+        "jzdz": "北京市怀柔区中国科学院大学雁栖湖校区西区五公寓",     # Residential Address
         "zrzsdd": "1",                       # Yesterday place to stay    1.雁栖湖  8.京外
         # Whether you are in school or not  1.是, 主要是在雁栖湖校区   5.否
         "sfzx": "1",
@@ -44,11 +40,11 @@ def submit(s: requests.Session):
         "dqszdd": "1",                       # current location
 
         #
-        "address": GEO_INFO[1]+GEO_INFO[2],
-        "area": GEO_INFO[2],
-        "province": GEO_INFO[1],
+        "address": "北京市怀柔区",
+        "area": "怀柔区",
+        "province": "北京市",
         "city": "",
-        "geo_api_info": str({"address":GEO_INFO[1]+GEO_INFO[2],"details":GEO_INFO[3],"province":{"label":GEO_INFO[1],"value":""},"city":{"label":"","value":""},"area":{"label":GEO_INFO[2],"value":""}}),
+        "geo_api_info": "{\"address\":\"北京市怀柔区\",\"details\":\"怀北镇中国科学院大学雁栖湖校区公寓中国科学院大学雁栖湖校区西区\",\"province\":{\"label\":\"北京市\",\"value\":\"\"},\"city\":{\"label\":\"\",\"value\":\"\"},\"area\":{\"label\":\"怀柔区\",\"value\":\"\"}}",
         "szgj_api_info": "{\"area\":{\"label\":\"\",\"value\":\"\"},\"city\":{\"label\":\"\",\"value\":\"\"},\"address\":\"\",\"details\":\"\",\"province\":{\"label\":\"\",\"value\":\"\"}}",
         "szgj_select_info": {},
         #
@@ -86,11 +82,11 @@ def submit(s: requests.Session):
         # "created_uid":"0",
         # "todaysfhsjc":"",
         # "is_daily":1,
-        "geo_api_infot": str({"address":GEO_INFO[1]+GEO_INFO[2],"details":GEO_INFO[3],"province":{"label":GEO_INFO[1],"value":""},"city":{"label":"","value":""},"area":{"label":GEO_INFO[2],"value":""}}),
+        "geo_api_infot": "{\"address\":\"北京市怀柔区\",\"details\":\"怀北镇中国科学院大学雁栖湖校区公寓中国科学院大学雁栖湖校区西区\",\"province\":{\"label\":\"北京市\",\"value\":\"\"},\"city\":{\"label\":\"\",\"value\":\"\"},\"area\":{\"label\":\"怀柔区\",\"value\":\"\"}}",
 
         # yesterday information
         "old_szdd": "国内",
-        "old_city": str({"address":GEO_INFO_OLD[1]+GEO_INFO_OLD[2],"details":GEO_INFO_OLD[3],"province":{"label":GEO_INFO_OLD[1],"value":""},"city":{"label":"","value":""},"area":{"label":GEO_INFO_OLD[2],"value":""}}),
+        "old_city": "{\"address\":\"北京市怀柔区\",\"details\":\"怀北镇中国科学院大学雁栖湖校区公寓中国科学院大学雁栖湖校区西区\",\"province\":{\"label\":\"北京市\",\"value\":\"\"},\"city\":{\"label\":\"\",\"value\":\"\"},\"area\":{\"label\":\"怀柔区\",\"value\":\"\"}}",
     }
 
     r = s.post("https://app.ucas.ac.cn/ucasncov/api/default/save", data=new_daily)
@@ -98,7 +94,7 @@ def submit(s: requests.Session):
 
     result = r.json()
     if result.get('m') == "操作成功":
-        send_message('打卡成功', '打卡成功！地点为'+GEO_INFO[0])
+        send_message('打卡成功', '打卡成功！')
     else:
         send_message('打卡失败', r.json().get("m"))
 

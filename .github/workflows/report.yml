@@ -2,8 +2,8 @@ name: Report
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 23 * * *' # UTC[30 7 for Beijing Time(UTC+8)]
+  # schedule:
+    # - cron: '30 23 * * *' # UTC[30 7 for Beijing Time(UTC+8)]
 
 permissions:
   contents: read
